@@ -13,7 +13,14 @@ class Employee:
         for emp in Employee.employeeList:
             if(emp.getEmpNo() == empNo):
                return emp
-        return False         
+        return False 
+    def updateEmpById(selfy, empNo, empName, empDes, empSal):
+        for emp in Employee.employeeList:
+            if(emp.getEmpNo() == empNo):
+                emp.empNo, emp.empName, emp.Des, emp.Sal = empNo, empName, empDes, empSal
+                return True
+        return False        
+
     def setEmpNo(self, empNo):
         self.empNo = empNo
     def getEmpNo(self) :
@@ -36,8 +43,8 @@ class Employee:
 
 choice = 1
 employee = Employee(0,"","",0.0)
-while choice >= 1 and choice <=2:
-    print("\n\n1.Add New Employee\n2. Get All Employee List\n3. Get Employee by ID\n\n")
+while choice >= 1 and choice <=3:
+    print("\n\n1.Add New Employee\n2. Get All Employee List\n3. Get Employee by ID\n4. Update Employee by ID\n\n")
     choice = int(input("Enter Your Choice: "))
     if(choice ==1):
         empNo = int(input("Enter Employee No; "))
@@ -57,3 +64,14 @@ while choice >= 1 and choice <=2:
            print("\nSorry!! Emplolyee not founfd by ID:", empNo)
        else:
            print(emp)
+    elif(choice == 4):
+        empNo = int(input("Enter Employee No; "))
+        empName = input("Enter Employee Name; ")
+        empDes = input("Enter Employee Designation; ")
+        empSal = float(input("Enter Employee Salary; "))
+        emp = employee.updateEmpById(empNo, empName, empDes, empSal)
+        if(emp == False):
+            print("\nSorry!! Update Failed, Emplolyee not founfd by ID:", empNo)
+        else:
+            print("Successfully Updated Employee For ID;", empNo)    
+
