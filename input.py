@@ -8,7 +8,12 @@ class Employee:
     def addNewEmployee(self):
         Employee.employeeList.append(self) 
     def getEmpList(self):
-        return Employee.employeeList   
+        return Employee.employeeList
+    def getEmpById(self, empNo):
+        for emp in Employee.employeeList:
+            if(emp.getEmpNo() == empNo):
+               return emp
+        return False         
     def setEmpNo(self, empNo):
         self.empNo = empNo
     def getEmpNo(self) :
@@ -32,7 +37,7 @@ class Employee:
 choice = 1
 employee = Employee(0,"","",0.0)
 while choice >= 1 and choice <=2:
-    print("\n\n1.Add New Employee\n2. Get All Employee List\n\n")
+    print("\n\n1.Add New Employee\n2. Get All Employee List\n3. Get Employee by ID\n\n")
     choice = int(input("Enter Your Choice: "))
     if(choice ==1):
         empNo = int(input("Enter Employee No; "))
@@ -45,3 +50,10 @@ while choice >= 1 and choice <=2:
         print("\n")
         for emp in employee.getEmpList():
             print(emp)
+    elif(choice == 3):
+       empNo = int(input("Enter Employee No; "))
+       employee.getEmpById(empNo)
+       if(emp == False):
+           print("\nSorry!! Emplolyee not founfd by ID:", empNo)
+       else:
+           print(emp)
